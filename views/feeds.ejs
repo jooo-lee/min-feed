@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSS Reader</title>
+  </head>
+  <body>
+    <h1>All Feeds</h1>
+    <ol start="0">
+      <% for (let i = 0; i < feeds.length; i++) { %>
+        <li>
+          <a href="/feed/<%= i %>"><%= feeds[i].title %></a>
+        </li>
+      <% } %>
+    </ol>
+  </body>
+</html>

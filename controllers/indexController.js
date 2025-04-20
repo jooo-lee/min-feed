@@ -1,32 +1,39 @@
-import { initFeed } from '../helpers/initFeed.js';
+import { initFeeds } from '../helpers/initFeeds.js';
 
-let feed;
+let feeds;
 (async () => {
-  feed = await initFeed();
+  feeds = await initFeeds();
 })();
 
+const getFeeds = async (req, res, next) => {
+  if (typeof feeds === 'undefined' || feeds === null) {
+    next(new Error('Could not get feeds.'));
+  }
+  res.render('feeds', { feeds: feeds });
+};
+
 const getFeed = async (req, res, next) => {
-  if (typeof feed === 'undefined' || feed === null) {
+  const feedId = req.params.feedId;
+  const feed = feeds[feedId];
+  if (feed === 'undefined' || feed === null) {
     next(new Error('Could not get feed.'));
   }
-  res.render('feed', { feed: feed });
+  res.render('feed', { feed: feeds[feedId], feedId: feedId });
 };
 
 const getPost = async (req, res, next) => {
-  if (typeof feed === 'undefined' || feed === null) {
+  const feed = feeds[req.params.feedId];
+  const post = feed['items'][req.params.postId];
+  if (feed === 'undefined' || feed === null) {
     next(new Error('Could not get feed.'));
-  } else if (
-    typeof feed.items[req.params.id] === 'undefined' ||
-    feed.items[req.params.id] === null
-  ) {
+  } else if (post === 'undefined' || post === null) {
     next(new Error('Could not get post.'));
   }
   try {
-    const item = feed.items[req.params.id];
-    res.render('post', { item: item });
+    res.render('post', { post: post });
   } catch (err) {
     next(new Error('Could not get post.'));
   }
 };
 
-export { getFeed, getPost };
+export { getFeeds, getFeed, getPost };
