@@ -8,6 +8,10 @@
 <body>
   <h1><%= item.title %></h1> 
   <p><%= item.pubDate %></p>
-  <%- item['content:encoded'] %>
+  <% if (Object.hasOwn(item, 'content:encoded')) { %>
+    <%- item['content:encoded'] %>
+  <% } else { %>
+    <%- item.content %>
+  <% } %>
 </body>
 </html>
