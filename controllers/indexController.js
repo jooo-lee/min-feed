@@ -1,21 +1,24 @@
 import Parser from 'rss-parser';
-import expressAsyncHandler from 'express-async-handler';
+
 const parser = new Parser();
+let feed;
 
-const getFeed = expressAsyncHandler(async (req, res) => {
-  // const feed = await parser.parseURL('https://www.reddit.com/.rss');
-  const feed = await parser.parseURL(
-    'https://avas.bearblog.dev/feed/?type=rss'
-  );
-  console.log(feed.title);
-  console.log('\n');
+const getFeed = async (req, res, next) => {
+  try {
+    feed = await parser.parseURL('https://avas.bearblog.dev/feed/?type=rss');
+    res.render('feed', { feed: feed });
+  } catch {
+    next(new Error('Could not get feed.'));
+  }
+};
 
-  feed.items.slice(0, 3).forEach((item) => {
-    console.log(item.title + ':' + item.link);
-    console.log('\n');
-  });
+const getPost = async (req, res, next) => {
+  try {
+    const item = feed.items[req.params.id];
+    res.render('post', { item: item });
+  } catch {
+    next(new Error('Could not get post.'));
+  }
+};
 
-  res.send(feed.title);
-});
-
-export { getFeed };
+export { getFeed, getPost };
