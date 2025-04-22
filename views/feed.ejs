@@ -10,10 +10,10 @@
   <body>
     <h1><%= feed.title %></h1>
     <ol start="0">
-      <% for (let i = 0; i < feed.items.length; i++) { %>
+      <% for (const item of feed.items) { %>
         <li>
-          <a href="/feed/<%= feedId %>/<%= i %>"><%= feed.items[i].title %></a>
-          <p><%= new Date(feed.items[i].pubDate) %></p>
+          <a href="<%= item.link %>"><%= item.title %></a>
+          <p><%= new Date(item.pubDate) %></p>
         </li>
       <% } %>
     </ol>
