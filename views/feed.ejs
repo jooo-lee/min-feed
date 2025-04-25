@@ -12,8 +12,11 @@
     <ol start="0">
       <% for (const item of feed.items) { %>
         <li>
-          <a href="<%= item.link %>"><%= item.title %></a>
-          <p><%= new Date(item.pubDate) %></p>
+          <p>
+            <%= (new Date(item.pubDate)).toDateString() %>
+            ---
+            <a href="<%= item.link %>"><%= item.title %></a>
+          </p>
         </li>
       <% } %>
     </ol>
