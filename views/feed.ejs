@@ -9,7 +9,7 @@
   </head>
   <body>
     <h1><%= feed.title %></h1>
-    <ol start="0">
+    <ul>
       <% for (const item of feed.items) { %>
         <li>
           <p>
@@ -19,6 +19,6 @@
           </p>
         </li>
       <% } %>
-    </ol>
+    </ul>
   </body>
 </html>

@@ -7,12 +7,12 @@
   </head>
   <body>
     <h1>All Feeds</h1>
-    <ol start="0">
+    <ul>
       <% for (let i = 0; i < feeds.length; i++) { %>
         <li>
           <a href="/feed/<%= i %>"><%= feeds[i].title %></a>
         </li>
       <% } %>
-    </ol>
+    </ul>
   </body>
 </html>
