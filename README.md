@@ -13,8 +13,8 @@ First make sure you have the following installed:
 
 Then do the following:
 
-- Clone this repository onto your local machine by running
-  `git clone https://github.com/jooo-lee/rss-reader.git`
+- Run `git clone https://github.com/jooo-lee/rss-reader.git` to clone this
+  repository
 - `cd` into the cloned repository
 - Run `npm install`
 - Add and remove links to RSS feeds in `urls.txt`
