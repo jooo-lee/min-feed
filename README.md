@@ -1,6 +1,6 @@
 # MinFeed
 
-A minimalist RSS reader that aggregrates all your favourite blogs to be read in
+A minimalist RSS reader that aggregates all your favourite blogs to be read in
 one place.
 
 ## Installation
